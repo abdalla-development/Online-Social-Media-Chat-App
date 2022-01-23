@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href={%static 'css/inbox.css'%}>
+{% endblock %}
+
+{% block content %}
+</br>
+<div class="container">
+<div class="row">
+	<!-- BEGIN INBOX -->
+	<div class="col-md-12">
+		<div class="grid email">
+			<div class="grid-body">
+				<div class="row">
+					<!-- BEGIN INBOX MENU -->
+					<div class="col-md-3">
+						<h2 class="grid-title"><i class="fa fa-inbox"></i> Inbox</h2>
+						<a class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-modal" href=""><i class="fa fa-pencil"></i>&nbsp;&nbsp;NEW MESSAGE</a>
+
+						<hr>
+
+						<div>
+							<ul class="nav nav-pills nav-stacked">
+								<div class="container-fluid mt-1 mb-1"><li class="header">Folders</li></div>
+								<div class="container-fluid mt-1 mb-1"><li class="active"><a href="{% url 'inbox'%}" class="btn btn-block btn-primary"><i class="fa fa-inbox"></i>  Inbox <span class="badge bg-warning text-dark">({{inbox_count}})</span></a></li></div>
+								<div class="container-fluid mt-1 mb-1"><li><a href="{% url 'sent'%}" class="btn btn-block btn-primary"><i class="fa fa-mail-forward"></i>  Sent <span class="badge bg-warning text-dark">({{sent_count}})</span></a></li></div>
+							</ul>
+						</div>
+					</div>
+					<!-- END INBOX MENU -->
+					
+					<!-- BEGIN INBOX CONTENT -->
+					<div class="col-md-9">
+						<div class="row">
+							<div class="col-sm-6">
+								<label style="margin-right: 8px;" class="">
+									<div class="icheckbox_square-blue" style="position: relative;"><input type="checkbox" id="check-all" class="icheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+								</label>
+								
+							</div>
+
+							<div class="col-md-8 search-form">
+								<form action="#" class="text-right">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm" placeholder="Search">
+										<span class="input-group-btn">
+                                            <button type="submit" name="search" class="btn_ btn-primary btn-sm search"><i class="fa fa-search"></i></button></span>
+									</div>			 
+								</form>
+							</div>
+						</div>
+						
+						<div class="padding"></div>
+						
+						<div class="table-responsive">
+							<table class="table">
+								<tbody>
+                                    <tr>
+                                        <td class="name">Read</td>
+                                        <td class="name">Star</td>
+                                        <td class="name">From</td>
+                                        <td class="name">Subject</td>
+                                        <td class="name">Delete</td>
+                                    </tr>
+									{% for obj in inbox_message%}
+										<tr>
+											<td class="action"><input type="checkbox" /></td>
+											<td class="action"><i class="fa fa-star-o"></i></td>
+											<td class="name"><a href="{% url 'read_email' obj.id%}">{{obj.send_from}}</a></td>
+											<td class="subject"><a href="{% url 'read_email' obj.id%}">{{obj.subject}} </a></td>
+											<td class="name"><a href="{% url 'delete_email' obj.id%}" class="btn btn-outline-danger">Delete</a></td>
+										</tr>
+									{% endfor %}
+							    </tbody>
+                            </table>
+						</div>						
+					</div>
+					<!-- END INBOX CONTENT -->
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END INBOX -->
+</div>
+</div>
+</br></br></br></br></br></br></br>
+{% endblock %}

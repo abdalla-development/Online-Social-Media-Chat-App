@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+  <link rel="stylesheet" href={%static 'css/user_profile_styles.css'%}>
+{% endblock %}
+
+{% block content %}
+{% for obj in users_data%}
+{% if obj.user_id != user.username %}
+    <div class="container">
+  <div class="header-container">
+    <img src="https://s17.postimg.cc/ypm5ye95r/image.jpg" alt="test" class="header-image" />
+    <div class="header">
+      <svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg" class="header-icon">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+
+      <svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg" class="u-float-right header-icon">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
+      <h1 class="main-heading">{{obj.user_id}}</h1>
+      <div class="stats">
+        <span class="stat-module">
+          Country <span class="stat-number">{{obj.country}}</span>
+        </span></br>
+        <span class="stat-module">
+          City <span class="stat-number">{{obj.city}}</span>
+        </span></br>
+        <span class="stat-module">
+          Age <span class="stat-number">{{obj.age}}</span>
+        </span></br>
+        <span class="stat-module">
+          Gender <span class="stat-number">{{obj.gender}}</span>
+        </span></br>
+      </div>
+    </div> <!-- END header -->
+  </div>
+  
+  <div class="overlay-header"></div>
+  
+  <div class="body">
+    <a href="{% url 'profile' obj.user_id%}"><img src="{{obj.profile_picture.url}}" alt="Hugh Jackman" class="body-image" width="280" height="280"/></a>
+    
+    
+    <span class="body-stats">Followers <span>{{obj.followers}}</span></span>
+    <span class="body-stats">Following <span>{{obj.following}}</span></span>
+    <span class="body-stats">Friends <span>    {{obj.friends}}</span></span>
+
+    <div class="u-clearfix"></div></br>
+    <div class="body-info">
+      <p>
+        {{obj.about_me}}
+      </p>
+    </div>
+    
+  </div>
+  
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

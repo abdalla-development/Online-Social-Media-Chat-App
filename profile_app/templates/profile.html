@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+  <link rel="stylesheet" href={%static 'css/profile_styles.css'%}>
+{% endblock %}
+{% block content %}
+
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-2 text-center">
+                <div class="row">
+                    <div class="col-md-7 border-right no-gutters">
+                        <div class="py-3"><img src="{{user_data.profile_picture.url}}" width="100" class="rounded-circle"/>
+                            <h4 class="text-secondary">{{user_data.user_id}}</h4>
+                            <div class="allergy"><span>{{user_data.about_me}}</span></div>
+                            <div class="stats">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex flex-column"> <span class="text-left head">DOB</span> <span class="text-left bottom">{{user_data.birth_day}}</span> </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex flex-column"> <span class="text-left head">Age</span> <span class="text-left bottom">{{user_data.age}}</span> </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex flex-column"> <span class="text-left head">Gender</span> <span class="text-left bottom">{{user_data.gender}}</span> </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex flex-column"> <span class="text-left head">Postal Code</span> <span class="text-left bottom">{{user_data.postal_code}}</span> </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="d-flex flex-column"> <span class="text-left head">Friends</span> <span class="text-left bottom">{{user_data.friends}}</span> </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="px-3">
+                                {% if user.username != user_data.user_id %}
+                                    <a type="button" href="{% url 'new_message' user_data.user_id%}" role="button" class="btn btn-primary btn-block">Send Message</a>
+                                    <a type="button" href="{% url 'home' %}" role="button" class="btn btn-primary btn-block">Start Chat</a>
+                                {% else %}
+                                    <a type="button" href="{% url 'edit_user_profile' user_data.user_id%}" role="button" class="btn btn-primary btn-block">Edit Profile</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="py-3">
+                            <div> <span class="d-block head">Home Address</span> <span class="bottom">{{user_data.address}}</span> </div>
+                            <div class="mt-4"> <span class="d-block head">Mobile Phone</span> <span class="bottom">{{user_data.phone_number}}</span> </div>
+                            <div class="mt-4"> <span class="d-block head">City</span> <span class="bottom">{{user_data.city}}</span> </div>
+                            <div class="mt-4"> <span class="d-block head">Country</span> <span class="bottom">{{user_data.country}}</span> </div>
+                            <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom">{{user.email}}</span> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</br></br></br></br></br></br></br>
+{% endblock %}

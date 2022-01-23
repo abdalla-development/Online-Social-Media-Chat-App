@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href={%static 'css/inbox.css'%}>
+{% endblock %}
+
+{% block content %}
+
+</br>
+<div class="container">
+<div class="row">
+	<!-- BEGIN INBOX -->
+	<div class="col-md-12">
+		<div class="grid email">
+			<div class="grid-body">
+				<div class="row">
+					<!-- BEGIN INBOX MENU -->
+					<div class="col-md-2">
+						<h2 class="grid-title"><i class="fa fa-inbox"></i> Received</h2>
+						<hr>
+
+						<div>
+							<ul class="nav nav-pills nav-stacked">
+								<div class="container-fluid"><li class="header">Folders</li></div>
+								<div class="container-fluid"><li class="active"><a href="{% url 'inbox'%}"><i class="fa fa-inbox"></i>  Inbox <span class="badge bg-warning text-dark">({{inbox_count}})</span></a></li></div>
+								<div class="container-fluid"><li><a href="{% url 'sent'%}"><i class="fa fa-mail-forward"></i>  Sent<span class="badge bg-warning text-dark">({{sent_count}})</span></a></li></div>
+							</ul>
+						</div>
+					</div>
+					<!-- END INBOX MENU -->
+					
+					<!-- BEGIN INBOX CONTENT -->
+					<div class="col-md-9">
+                        <div class="card text-dark bg-light mb-3" style="max-width: 70rem;">
+                            <div class="card-header bg-secondary"><h5>Sent From</h5></div>
+                            <div class="card-body">
+                                <p class="card-text">{{read_message.send_from }}</p>
+                            </div>
+                        </div>
+
+                        <div class="card text-dark bg-light mb-3" style="max-width: 70rem;">
+                            <div class="card-header bg-secondary"><h5>Subject</h5></div>
+                            <div class="card-body">
+                                <p class="card-text">{{read_message.subject }}</p>
+                            </div>
+                        </div>
+
+                        <div class="card text-dark bg-light mb-3" style="max-width: 70rem; height: 40rem;">
+                            <div class="card-header bg-secondary"><h5>Message</h5></div>
+                            <div class="card-body">
+                                <p class="card-text" >{{read_message.message }}</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-block btn-primary" href="{% url 'inbox' %}" data-toggle="modal" data-target="#compose-modal">Back</a>
+					</div>
+
+                    
+                        
+					
+					<!-- END INBOX CONTENT -->
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END INBOX -->
+</div>
+</div>
+</br></br></br></br></br>
+{% endblock %}

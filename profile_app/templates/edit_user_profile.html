@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+  <link rel="stylesheet" href={%static 'css/register_styles.css'%}>
+{% endblock %}
+{% block content %}
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Information</h3>
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" id="firstName" name="country" class="form-control form-control-lg" placeholder="Country" value="{{user_data.country}}"/>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" id="lastName" name="city" class="form-control form-control-lg" placeholder="City" value="{{user_data.city}}"/>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="text" id="" class="form-control form-control-lg" name="postal_code" placeholder="Postal Code" value="{{user_data.postal_code}}"/>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="tel" id="phoneNumber" name="phone_number" class="form-control form-control-lg" placeholder="Phone Number" value="{{user_data.phone_number}}"/>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+
+                
+
+                </div>
+              </div>
+              <div class="form-outline">
+                <input type="text" id="" class="form-control form-control-lg" name="address" placeholder="Address" value="{{user_data.address}}"/>
+              </div>
+              </br>
+              <div class="form-outline">
+                <textarea id="w3review" name="about_me" class="form-control form-control-lg" rows="2" placeholder="About Me" >{{user_data.about_me}}</textarea>
+              </div>
+              </br>
+              <div class="form-outline">
+                <input type="file" id="" class="form-control form-control-lg" name="image"  value=""/>{{user_data.profile_picture.url}}
+              </div>
+              </br>
+              <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
